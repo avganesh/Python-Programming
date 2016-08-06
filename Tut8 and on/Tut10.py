@@ -47,11 +47,18 @@ HPI_data = pd.read_pickle('fiddy_states3.pickle')
 ##benchmark = HPI_Benchmark()
 HPI_State_Correlation = HPI_data.corr()
 
-TX1yr = HPI_data['TX'].resample('A').mean()
-##print(TX1yr.head())
+HPI_data['TX1yr'] = HPI_data['TX'].resample('A').mean()
+print(HPI_data[['TX','TX1yr']].head())
+##HPI_data.dropna(inplace=True)
+##HPI_data.fillna(method='ffill', inplace=True)
+##HPI_data.fillna(method='bfill', inplace=True)
+HPI_data.fillna(value=-99999, limit=10, inplace=True)
+##we would do this for ML problems to identify these items as outliers
+print(HPI_data[['TX','TX1yr']].head())
 
-HPI_data['TX'].plot(ax=ax1)
-TX1yr.plot(color='k',ax=ax1)
+print(HPI_data.isnull().values.sum())
+
+HPI_data[['TX','TX1yr']].plot(ax=ax1)
 
 plt.legend().remove()
 plt.show()
