@@ -16,10 +16,11 @@ def get_headlines(topic):
     topic_to_reddit_dict = {'Donald': 'the_donald',
                       'Finance': 'finance',
                       'Tech': 'technology',
+                      'Clop':'clopclop',
                       'World': 'worldnews'
                             }
     if (not (topic in topic_to_reddit_dict)):
-        topic = 'World'
+        topic = 'Donald'
 
     redditPath = topic_to_reddit_dict[topic]
 
